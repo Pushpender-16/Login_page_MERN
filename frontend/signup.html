@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <h1>Sign Up</h1>
+
+        <form id="signupForm">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username"
+                       minlength="3" maxlength="30" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Gmail</label>
+                <input type="email" id="email" placeholder="example@gmail.com"
+                       maxlength="254" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password"
+                       minlength="6" maxlength="16" required>
+                <p class="hint">
+                    Minimum 6 and maximum 16 characters.
+                    At least one special character required.
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password"
+                       minlength="6" maxlength="16" required>
+            </div>
+
+            <button type="submit" id="signupBtn">Sign Up</button>
+
+            <div id="message" role="status" aria-live="polite"></div>
+
+            <p class="hint">Already have an account? <a href="index.html">Login</a></p>
+
+        </form>
+
+    </div>
+
+    <script src="signup.js"></script>
+</body>
+</html>
