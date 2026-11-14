@@ -6,6 +6,7 @@ import rateLimit from "express-rate-limit";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import dns from "dns";
+import { Resend } from "resend";
 
 // Change DNS
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
@@ -85,7 +86,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        // unique: true,
         trim: true,
         lowercase: true,
         maxlength: 254,
@@ -339,6 +340,57 @@ app.post("/api/register", registerLimiter, async (req, res) => {
         });
     }
 });
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+
+// Send Email API
+app.post("/send-email", async (req, res) => {
+
+    try {
+
+        const { email } = req.body;
+
+        const { data, error } = await resend.emails.send({
+
+            from: `My App <${process.env.FROM_EMAIL}>`,
+
+            to: [email],
+
+            subject: "Hello from Resend",
+
+            html: `
+                <h2>Hello!</h2>
+                <p>This is my first email using Resend API.</p>
+                <p>Email sent successfully!</p>
+            `
+
+        });
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: error.message
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Email sent successfully!",
+            data
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+
+    }
+
+});
+
 
 // ---------------- Start Server ----------------
 const startServer = async () => {

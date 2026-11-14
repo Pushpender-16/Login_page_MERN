@@ -7,7 +7,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(180deg,#c7d9fc 0%, #e5d8fb 35%, #f9d6e3 70%,#fce2d7 100%)fixed;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -18,7 +18,7 @@
         .login-container {
             width: 100%;
             max-width: 380px;
-            background: white;
+            background: #ffffffb3;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
